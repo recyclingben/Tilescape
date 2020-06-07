@@ -1,7 +1,9 @@
 #pragma once
+#include <string.h>
 #include <biglist/list.h>
 
 #include "world_def.h"
+#include "robot.h"
 #include "_/engine_l1.h"
 #include "_/engine_l2.h"
 #include "_/engine_l3.h"
@@ -31,6 +33,7 @@ void ts_world_add_robot(ts_World *world,
                         ts_Robot **out_robot)
 {
     table_add(world->robots, out_robot);
+    memset(*out_robot, 0, sizeof(ts_Robot));
 }
 
 void ts_world_get_robots_head(ts_World *world,

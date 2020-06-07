@@ -1,5 +1,6 @@
 #pragma once
 #include <stdint.h>
+#include <string.h>
 
 #ifndef offset
 #define offset(of, by) ((void *)((char *)of + by))

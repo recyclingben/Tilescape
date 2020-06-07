@@ -20,6 +20,14 @@ typedef struct {
 } ts_World;
 
 typedef struct {
+    bool push_n;
+    bool push_s;
+    bool push_e;
+    bool push_w;
+} ts_Controller;
+
+typedef struct {
     ts_Place place_x;
     ts_Place place_y;
+    ts_Controller controller;
 } ts_Robot;
