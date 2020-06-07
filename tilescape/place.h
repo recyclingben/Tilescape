@@ -15,6 +15,7 @@
 #define ts_place_tile(ptr) ((uint8_t *)offset(ptr, 2))
 #define ts_place_blob(ptr) ((uint16_t *)ptr)
 #endif
+#define ts_place_totl(ptr) (&(ptr)->int_32)
 
 
 typedef union {

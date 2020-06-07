@@ -3,6 +3,7 @@
 
 #include "world_def.h"
 #include "_/engine_l1.h"
+#include "_/engine_l2.h"
 #include "_/engine_l3.h"
 
 
@@ -43,4 +44,14 @@ void ts_world_get_robots_next(ts_World *world,
                               ts_Robot **out_robot)
 {
     table_next(world->robots, robot, out_robot);
+}
+
+void ts_world_add_blob(ts_World *world,
+                       uint16_t x,
+                       uint16_t y,
+                       ts_Blob **out_blob)
+{
+    index2d_get(world->blobs, x, y, out_blob);
+    if (!*out_blob)
+        index2d_add(world->blobs, x, y, out_blob);
 }

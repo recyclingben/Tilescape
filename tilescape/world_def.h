@@ -10,8 +10,8 @@ typedef struct {
 } ts_Tile;
 
 typedef struct {
-    ts_Tile tiles[(uint8_t)~0]
-                 [(uint8_t)~0];
+    ts_Tile tiles[(uint8_t)~0 + 1]
+                 [(uint8_t)~0 + 1];
 } ts_Blob;
 
 typedef struct {

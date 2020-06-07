@@ -10,7 +10,8 @@ void ts_engine_l3_step(ts_World *world)
 
     table_head(world->robots, &robot);
     while (robot) {
-        ts_engine_l2_push_robot_y(world, robot, 1);
+        ts_engine_l2_push_robot_x(world, robot, 19);
+        ts_engine_l2_push_robot_y(world, robot, 20);
         table_next(world->robots, robot, &robot);
     }
 }
