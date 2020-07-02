@@ -96,8 +96,10 @@ bool ts_engine_l2_can_push_y(ts_World *world,
     ts_Tile *tile_2;
     ts_Tile *tile_3;
 
+
     ts_Place place_x = robot->place_x;
     ts_Place place_y = robot->place_y;
+
 
     *ts_place_totl(&place_y) += distance;
     uint16_t blob_x_0 = *ts_place_blob(&place_x);
@@ -115,14 +117,17 @@ bool ts_engine_l2_can_push_y(ts_World *world,
     uint16_t blob_x_3 = *ts_place_blob(&place_x);
     uint16_t blob_y_3 = *ts_place_blob(&place_y);
 
+
     index2d_get(world->blobs, blob_x_0, blob_y_0, &blob_0);
     index2d_get(world->blobs, blob_x_1, blob_y_1, &blob_1);
     index2d_get(world->blobs, blob_x_2, blob_y_2, &blob_2);
     index2d_get(world->blobs, blob_x_3, blob_y_3, &blob_3);
 
+
     if (blob_0 && blob_1 && blob_2 && blob_3) {
         ts_Place place_x = robot->place_x;
         ts_Place place_y = robot->place_y;
+
 
         *ts_place_totl(&place_y) += distance;
         tile_0 = &blob_0->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
@@ -135,6 +140,7 @@ bool ts_engine_l2_can_push_y(ts_World *world,
 
         *ts_place_totl(&place_x) -= (uint8_t)~0;
         tile_3 = &blob_3->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
+
 
         return !tile_0->type &&
                !tile_1->type &&
