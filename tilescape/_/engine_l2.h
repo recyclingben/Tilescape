@@ -14,9 +14,9 @@
 
 
 /* Yikes! */
-bool ts_engine_l2_can_push_x(ts_World *world,
-                             ts_Robot *robot,
-                             int8_t distance)
+static inline bool ts_engine_l2_can_push_x(ts_World *world,
+                                           ts_Robot *robot,
+                                           int8_t distance)
 {
     /* Test if, after translation, four corners of robot are not in contact with a tile. */
     ts_Blob *blob_0;
@@ -83,9 +83,9 @@ bool ts_engine_l2_can_push_x(ts_World *world,
     return false;
 }
 
-bool ts_engine_l2_can_push_y(ts_World *world,
-                             ts_Robot *robot,
-                             int8_t distance)
+static inline bool ts_engine_l2_can_push_y(ts_World *world,
+                                           ts_Robot *robot,
+                                           int8_t distance)
 {
     ts_Blob *blob_0;
     ts_Blob *blob_1;
@@ -151,9 +151,9 @@ bool ts_engine_l2_can_push_y(ts_World *world,
     return false;
 }
 
-ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
-                                                 ts_Robot *robot,
-                                                 int8_t distance)
+static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
+                                                               ts_Robot *robot,
+                                                               int8_t distance)
 {
     *ts_place_totl(&robot->place_x) += distance;
 
@@ -173,9 +173,9 @@ ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
     return 0;
 }
 
-ts_engine_l2_PushFlags ts_engine_l2_push_robot_y(ts_World *world,
-                                                 ts_Robot *robot,
-                                                 int8_t distance)
+static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_y(ts_World *world,
+                                                               ts_Robot *robot,
+                                                               int8_t distance)
 {
     *ts_place_totl(&robot->place_y) += distance;
 

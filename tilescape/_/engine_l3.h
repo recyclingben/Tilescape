@@ -8,7 +8,7 @@
 #define JUMP_SHORT_STRENGTH 15 /* < JUMP_STRENGTH */
 
 
-void ts_engine_l3_step(ts_World *world)
+static inline void ts_engine_l3_step(ts_World *world)
 {
     ts_Robot *robot;
 
