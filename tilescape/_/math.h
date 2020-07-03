@@ -1,3 +1,6 @@
+#pragma once
+
+
 static inline int8_t max8(int8_t a, int8_t b) {
     return a - ((a - b) & (a - b) >> 31);
 }

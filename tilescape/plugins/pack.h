@@ -1,3 +1,4 @@
+#pragma once
 #include <netinet/in.h>
 #include "../place.h"
 #include "../world_def.h"
