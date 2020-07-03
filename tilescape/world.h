@@ -16,6 +16,7 @@
 void ts_world_make(ts_World **out_world)
 {
     *out_world = malloc(sizeof(ts_World));
+    (*out_world)->tick = 0;
     index2d_make(sizeof(ts_Blob), &(*out_world)->blobs);
     table_make(sizeof(ts_Robot), (uint16_t)~0, &(*out_world)->robots);
 }
