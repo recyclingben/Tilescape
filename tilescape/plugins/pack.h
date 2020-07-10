@@ -38,6 +38,14 @@ static inline void ts_blob_unpack(ts_Blob *blob)
 
 static inline void ts_robot_pack(ts_Robot *robot)
 {
+    robot->key = htons(robot->key);
     ts_place_pack(&robot->place_x);
     ts_place_pack(&robot->place_y);
+}
+
+static inline void ts_robot_unpack(ts_Robot *robot)
+{
+    robot->key = ntohs(robot->key);
+    ts_place_unpack(&robot->place_x);
+    ts_place_unpack(&robot->place_y);
 }
