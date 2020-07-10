@@ -1,6 +1,6 @@
 #pragma once
 #include "../world_def.h"
-#include "math.h"
+#include "tsmath.h"
 #include "engine_l1.h"
 #include "engine_l2.h"
 
