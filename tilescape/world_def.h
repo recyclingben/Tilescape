@@ -16,7 +16,8 @@ typedef struct {
 typedef struct {
     uint8_t tick;
     index_Index2D *blobs;
-    table_Table *robots;
+    index_Index *robots;
+    table_Table *robots_table;
 } ts_World;
 
 typedef struct {
@@ -29,6 +30,7 @@ typedef struct {
 } ts_Controller;
 
 typedef struct {
+    uint32_t key;
     int8_t velocity_x;
     int8_t velocity_y;
     ts_Place place_x;

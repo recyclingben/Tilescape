@@ -12,7 +12,7 @@ static inline void ts_engine_l3_step(ts_World *world)
 {
     ts_Robot *robot;
 
-    table_head(world->robots, &robot);
+    table_head(world->robots_table, &robot);
     while (robot) {
         ts_engine_l2_PushFlags flags_x = ts_engine_l2_push_robot_x(world, robot, robot->velocity_x);
         ts_engine_l2_PushFlags flags_y = ts_engine_l2_push_robot_y(world, robot, robot->velocity_y);
@@ -45,7 +45,7 @@ static inline void ts_engine_l3_step(ts_World *world)
         robot->controller.jump        = false;
         robot->controller.jump_finish = false;
 
-        table_next(world->robots, robot, &robot);
+        table_next(world->robots_table, robot, &robot);
     }
 
     ++world->tick;
