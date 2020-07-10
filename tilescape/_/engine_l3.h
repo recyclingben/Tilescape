@@ -4,8 +4,8 @@
 #include "engine_l1.h"
 #include "engine_l2.h"
 
-#define JUMP_STRENGTH       53 /* 0-127 */
-#define JUMP_SHORT_STRENGTH 15 /* < JUMP_STRENGTH */
+#define JUMP_STRENGTH       70 /* 0-127 */
+#define JUMP_SHORT_STRENGTH 25 /* < JUMP_STRENGTH */
 
 
 static inline void ts_engine_l3_step(ts_World *world)
