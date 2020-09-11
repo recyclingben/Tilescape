@@ -55,6 +55,18 @@ static inline void ts_world_add_robot(ts_World *world,
         *out_robot = *reference;
 }
 
+static inline void ts_world_remove_robot(ts_World *world,
+                                         uint32_t key)
+{
+    ts_Robot **reference;
+    index_get(world->robots, key, &reference);
+
+    if (reference) {
+        table_remove(world->robots_table, *reference);
+        index_remove(world->robots, key);
+    }
+}
+
 static inline void ts_world_get_robots_head(ts_World *world,
                                             ts_Robot **out_robot)
 {
@@ -66,6 +78,12 @@ static inline void ts_world_get_robots_next(ts_World *world,
                                             ts_Robot **out_robot)
 {
     table_next(world->robots_table, robot, out_robot);
+}
+
+static inline void ts_world_robots_clear(ts_World *world)
+{
+    table_clear(world->robots_table);
+    index_slow_clear(world->robots);
 }
 
 static inline void ts_world_add_blob(ts_World *world,
