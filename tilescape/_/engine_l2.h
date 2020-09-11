@@ -3,8 +3,8 @@
 #include "../place.h"
 #include "engine_l1.h"
 
-#define ts_ROBOT_W 220
-#define ts_ROBOT_H 255
+#define TSROBOT_W 220
+#define TSROBOT_H 255
 
 #define ts_engine_l2_PushFlags uint8_t
 #define ts_engine_l2_PushFlags_FLOOR (1 << 0)
@@ -14,39 +14,39 @@
 
 
 /* Yikes! */
-static inline bool ts_engine_l2_can_push_x(ts_World *world,
-                                           ts_Robot *robot,
+static inline bool ts_engine_l2_can_push_x(TSWorld *world,
+                                           TSRobot *robot,
                                            int8_t distance)
 {
     /* Test if, after translation, four corners of robot are not in contact with a tile. */
-    ts_Blob *blob_0;
-    ts_Blob *blob_1;
-    ts_Blob *blob_2;
-    ts_Blob *blob_3;
+    TSBlob *blob_0;
+    TSBlob *blob_1;
+    TSBlob *blob_2;
+    TSBlob *blob_3;
 
-    ts_Tile *tile_0;
-    ts_Tile *tile_1;
-    ts_Tile *tile_2;
-    ts_Tile *tile_3;
+    TSTile *tile_0;
+    TSTile *tile_1;
+    TSTile *tile_2;
+    TSTile *tile_3;
 
 
-    ts_Place place_x = robot->place_x;
-    ts_Place place_y = robot->place_y;
+    TSPlace place_x = robot->place_x;
+    TSPlace place_y = robot->place_y;
 
 
     *ts_place_totl(&place_x) += distance;
     uint16_t blob_x_0 = *ts_place_blob(&place_x);
     uint16_t blob_y_0 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_y) += ts_ROBOT_H;
+    *ts_place_totl(&place_y) += TSROBOT_H;
     uint16_t blob_x_1 = *ts_place_blob(&place_x);
     uint16_t blob_y_1 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_x) += ts_ROBOT_W;
+    *ts_place_totl(&place_x) += TSROBOT_W;
     uint16_t blob_x_2 = *ts_place_blob(&place_x);
     uint16_t blob_y_2 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_y) -= ts_ROBOT_H;
+    *ts_place_totl(&place_y) -= TSROBOT_H;
     uint16_t blob_x_3 = *ts_place_blob(&place_x);
     uint16_t blob_y_3 = *ts_place_blob(&place_y);
 
@@ -65,13 +65,13 @@ static inline bool ts_engine_l2_can_push_x(ts_World *world,
         *ts_place_totl(&place_x) += distance;
         tile_0 = &blob_0->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_y) += ts_ROBOT_H;
+        *ts_place_totl(&place_y) += TSROBOT_H;
         tile_1 = &blob_1->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_x) += ts_ROBOT_W;
+        *ts_place_totl(&place_x) += TSROBOT_W;
         tile_2 = &blob_2->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_y) -= ts_ROBOT_H;
+        *ts_place_totl(&place_y) -= TSROBOT_H;
         tile_3 = &blob_3->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
 
@@ -83,38 +83,38 @@ static inline bool ts_engine_l2_can_push_x(ts_World *world,
     return false;
 }
 
-static inline bool ts_engine_l2_can_push_y(ts_World *world,
-                                           ts_Robot *robot,
+static inline bool ts_engine_l2_can_push_y(TSWorld *world,
+                                           TSRobot *robot,
                                            int8_t distance)
 {
-    ts_Blob *blob_0;
-    ts_Blob *blob_1;
-    ts_Blob *blob_2;
-    ts_Blob *blob_3;
+    TSBlob *blob_0;
+    TSBlob *blob_1;
+    TSBlob *blob_2;
+    TSBlob *blob_3;
 
-    ts_Tile *tile_0;
-    ts_Tile *tile_1;
-    ts_Tile *tile_2;
-    ts_Tile *tile_3;
+    TSTile *tile_0;
+    TSTile *tile_1;
+    TSTile *tile_2;
+    TSTile *tile_3;
 
 
-    ts_Place place_x = robot->place_x;
-    ts_Place place_y = robot->place_y;
+    TSPlace place_x = robot->place_x;
+    TSPlace place_y = robot->place_y;
 
 
     *ts_place_totl(&place_y) += distance;
     uint16_t blob_x_0 = *ts_place_blob(&place_x);
     uint16_t blob_y_0 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_x) += ts_ROBOT_W;
+    *ts_place_totl(&place_x) += TSROBOT_W;
     uint16_t blob_x_1 = *ts_place_blob(&place_x);
     uint16_t blob_y_1 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_y) += ts_ROBOT_H;
+    *ts_place_totl(&place_y) += TSROBOT_H;
     uint16_t blob_x_2 = *ts_place_blob(&place_x);
     uint16_t blob_y_2 = *ts_place_blob(&place_y);
 
-    *ts_place_totl(&place_x) -= ts_ROBOT_W;
+    *ts_place_totl(&place_x) -= TSROBOT_W;
     uint16_t blob_x_3 = *ts_place_blob(&place_x);
     uint16_t blob_y_3 = *ts_place_blob(&place_y);
 
@@ -126,20 +126,20 @@ static inline bool ts_engine_l2_can_push_y(ts_World *world,
 
 
     if (blob_0 && blob_1 && blob_2 && blob_3) {
-        ts_Place place_x = robot->place_x;
-        ts_Place place_y = robot->place_y;
+        TSPlace place_x = robot->place_x;
+        TSPlace place_y = robot->place_y;
 
 
         *ts_place_totl(&place_y) += distance;
         tile_0 = &blob_0->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_x) += ts_ROBOT_W;
+        *ts_place_totl(&place_x) += TSROBOT_W;
         tile_1 = &blob_1->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_y) += ts_ROBOT_H;
+        *ts_place_totl(&place_y) += TSROBOT_H;
         tile_2 = &blob_2->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
-        *ts_place_totl(&place_x) -= ts_ROBOT_W;
+        *ts_place_totl(&place_x) -= TSROBOT_W;
         tile_3 = &blob_3->tiles[*ts_place_tile(&place_x)][*ts_place_tile(&place_y)];
 
 
@@ -151,8 +151,8 @@ static inline bool ts_engine_l2_can_push_y(ts_World *world,
     return false;
 }
 
-static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
-                                                               ts_Robot *robot,
+static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(TSWorld *world,
+                                                               TSRobot *robot,
                                                                int8_t distance)
 {
     *ts_place_totl(&robot->place_x) += distance;
@@ -161,7 +161,7 @@ static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
         if (distance > 0) {
             /* Get as close as we can. */
             *ts_place_mini(&robot->place_x) = 0;
-            *ts_place_totl(&robot->place_x) += (uint8_t)~0 - ts_ROBOT_W;
+            *ts_place_totl(&robot->place_x) += (uint8_t)~0 - TSROBOT_W;
             return ts_engine_l2_PushFlags_RHIT;
         } else {
             *ts_place_totl(&robot->place_x) -= distance;
@@ -173,8 +173,8 @@ static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_x(ts_World *world,
     return 0;
 }
 
-static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_y(ts_World *world,
-                                                               ts_Robot *robot,
+static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_y(TSWorld *world,
+                                                               TSRobot *robot,
                                                                int8_t distance)
 {
     *ts_place_totl(&robot->place_y) += distance;
@@ -182,7 +182,7 @@ static inline ts_engine_l2_PushFlags ts_engine_l2_push_robot_y(ts_World *world,
     if (!ts_engine_l2_can_push_y(world, robot, 0)) {
         if (distance > 0) {
             *ts_place_mini(&robot->place_y) = 0;
-            *ts_place_totl(&robot->place_y) += (uint8_t)~0 - ts_ROBOT_H;
+            *ts_place_totl(&robot->place_y) += (uint8_t)~0 - TSROBOT_H;
             return ts_engine_l2_PushFlags_FLOOR;
         } else {
             *ts_place_totl(&robot->place_y) -= distance;

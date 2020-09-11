@@ -7,18 +7,18 @@
 
 typedef struct {
     uint8_t type;
-} ts_Tile;
+} TSTile;
 
 typedef struct {
-    ts_Tile tiles[(uint8_t)~0 + 1][(uint8_t)~0 + 1];
-} ts_Blob;
+    TSTile tiles[(uint8_t)~0 + 1][(uint8_t)~0 + 1];
+} TSBlob;
 
 typedef struct {
     uint8_t tick;
-    index_Index2D *blobs;
-    index_Index *robots;
-    table_Table *robots_table;
-} ts_World;
+    Index2D *blobs;
+    Index *robots;
+    Table *robots_table;
+} TSWorld;
 
 typedef struct {
     bool jump;
@@ -27,13 +27,13 @@ typedef struct {
     bool push_s;
     bool push_e;
     bool push_w;
-} ts_Controller;
+} TSController;
 
 typedef struct {
     uint32_t key;
     int8_t velocity_x;
     int8_t velocity_y;
-    ts_Place place_x;
-    ts_Place place_y;
-    ts_Controller controller;
-} ts_Robot;
+    TSPlace place_x;
+    TSPlace place_y;
+    TSController controller;
+} TSRobot;

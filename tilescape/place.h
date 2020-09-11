@@ -23,4 +23,4 @@ typedef union {
     uint8_t int_8;
     uint16_t int_16;
     uint32_t int_32;
-} ts_Place;
+} TSPlace;

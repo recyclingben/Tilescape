@@ -8,9 +8,9 @@
 #define JUMP_SHORT_STRENGTH 25 /* < JUMP_STRENGTH */
 
 
-static inline void ts_engine_l3_step(ts_World *world)
+static inline void ts_engine_l3_step(TSWorld *world)
 {
-    ts_Robot *robot;
+    TSRobot *robot;
 
     table_head(world->robots_table, &robot);
     while (robot) {
